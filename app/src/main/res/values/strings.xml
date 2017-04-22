@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Popular Movies</string>
+    <!-- Movie poster info-->
+    <string name="poster_content_description">This image holds a movie poster</string>
 </resources>
