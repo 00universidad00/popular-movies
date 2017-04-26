@@ -1,8 +1,10 @@
-package com.alanturing.popularmovies;
+package com.alanturing.popularmovies.ui;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
+
+import com.alanturing.popularmovies.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

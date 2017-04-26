@@ -3,11 +3,14 @@ package com.alanturing.popularmovies;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.widget.ImageView;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.alanturing.popularmovies.data.model.MovieObject;
+import com.alanturing.popularmovies.ui.MoviePosterAdapter;
 import com.facebook.stetho.Stetho;
 
 import java.util.ArrayList;
@@ -40,8 +43,27 @@ public class HomePage extends AppCompatActivity {
         MoviePosterAdapter mMoviePosterAdapter = new MoviePosterAdapter(HomePage.this, getTestData());
         mRecyclerView.setAdapter(mMoviePosterAdapter);
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.home_page, menu);
+        return true;
+    }
+
+    public void onActionFilterClick(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.group_filter_highest:
+                Toast.makeText(getBaseContext(), "You selected Highest Rated", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.group_filter_popular:
+                Toast.makeText(getBaseContext(), "You selected Most popular", Toast.LENGTH_SHORT).show();
+                break;
+        }
+    }
+
     //Test Data
-    public List<MovieObject> getTestData(){
+    public List<MovieObject> getTestData() {
         List<MovieObject> movies = new ArrayList<>();
         movies.add(new MovieObject("Hello"));
         movies.add(new MovieObject("Hello"));

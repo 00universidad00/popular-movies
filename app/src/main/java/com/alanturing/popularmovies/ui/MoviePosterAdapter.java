@@ -1,4 +1,4 @@
-package com.alanturing.popularmovies;
+package com.alanturing.popularmovies.ui;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.alanturing.popularmovies.R;
 import com.alanturing.popularmovies.data.model.MovieObject;
 
 import java.util.List;

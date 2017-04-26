@@ -2,4 +2,9 @@
     <string name="app_name">Popular Movies</string>
     <!-- Movie poster info-->
     <string name="poster_content_description">This image holds a movie poster</string>
+
+    <!-- Home Page filter menu-->
+    <string name="filter">Filter</string>
+    <string name="filter_most_popular">Most Popular</string>
+    <string name="filter_highest_rated">Highest Rated</string>
 </resources>
