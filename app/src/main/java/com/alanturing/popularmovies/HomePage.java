@@ -11,15 +11,19 @@ import android.widget.Toast;
 
 import com.alanturing.popularmovies.data.model.MovieObject;
 import com.alanturing.popularmovies.ui.MoviePosterAdapter;
+import com.alanturing.popularmovies.utils.LoadJSONTask;
 import com.facebook.stetho.Stetho;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class HomePage extends AppCompatActivity {
+import static com.alanturing.popularmovies.utils.AppConstants.URL_DISCOVER;
+import static com.alanturing.popularmovies.utils.AppConstants.URL_MOST_POPULAR;
+import static com.alanturing.popularmovies.utils.AppConstants.URL_TOP_RATED;
+
+public class HomePage extends AppCompatActivity implements LoadJSONTask.Listener {
     private static final String TAG = HomePage.class.getSimpleName();
     @BindView(R.id.rv_gallery)
     RecyclerView mRecyclerView;
@@ -39,9 +43,8 @@ public class HomePage extends AppCompatActivity {
         //Use a grid layout manager
         mLayoutManager = new GridLayoutManager(this, 2);
         mRecyclerView.setLayoutManager(mLayoutManager);
-        //Specify an Adapter
-        MoviePosterAdapter mMoviePosterAdapter = new MoviePosterAdapter(HomePage.this, getTestData());
-        mRecyclerView.setAdapter(mMoviePosterAdapter);
+        // Get JSON from Internet
+        new LoadJSONTask(this).execute(URL_DISCOVER);
     }
 
     @Override
@@ -54,27 +57,25 @@ public class HomePage extends AppCompatActivity {
     public void onActionFilterClick(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.group_filter_highest:
-                Toast.makeText(getBaseContext(), "You selected Highest Rated", Toast.LENGTH_SHORT).show();
+                new LoadJSONTask(this).execute(URL_TOP_RATED);
+                Toast.makeText(getBaseContext(), getString(R.string.toast_highest_rated), Toast.LENGTH_SHORT).show();
                 break;
             case R.id.group_filter_popular:
-                Toast.makeText(getBaseContext(), "You selected Most popular", Toast.LENGTH_SHORT).show();
+                new LoadJSONTask(this).execute(URL_MOST_POPULAR);
+                Toast.makeText(getBaseContext(), getString(R.string.toast_most_popular), Toast.LENGTH_SHORT).show();
                 break;
         }
     }
 
-    //Test Data
-    public List<MovieObject> getTestData() {
-        List<MovieObject> movies = new ArrayList<>();
-        movies.add(new MovieObject("Hello"));
-        movies.add(new MovieObject("Hello"));
-        movies.add(new MovieObject("Hello"));
-        movies.add(new MovieObject("Hello"));
-        movies.add(new MovieObject("Hello"));
-        movies.add(new MovieObject("Hello"));
-        movies.add(new MovieObject("Hello"));
-        movies.add(new MovieObject("Hello"));
-        movies.add(new MovieObject("Hello"));
-        movies.add(new MovieObject("Hello"));
-        return movies;
+    @Override
+    public void onLoaded(List<MovieObject> movieList) {
+        MoviePosterAdapter mMoviePosterAdapter = new MoviePosterAdapter(HomePage.this, movieList);
+        mRecyclerView.setAdapter(mMoviePosterAdapter);
     }
+
+    @Override
+    public void onError() {
+        Toast.makeText(this, "Error !", Toast.LENGTH_SHORT).show();
+    }
+
 }

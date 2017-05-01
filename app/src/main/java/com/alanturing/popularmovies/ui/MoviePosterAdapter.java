@@ -8,11 +8,14 @@ import android.view.ViewGroup;
 
 import com.alanturing.popularmovies.R;
 import com.alanturing.popularmovies.data.model.MovieObject;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+import static com.alanturing.popularmovies.utils.AppConstants.BASE_URL_PICTURE;
+
 public class MoviePosterAdapter extends RecyclerView.Adapter<MoviePosterViewHolder> {
-    private static final String TAG = MoviePosterAdapter.class.getSimpleName();
+
     private List<MovieObject> movieObjectList;
     private Context context;
 
@@ -31,8 +34,7 @@ public class MoviePosterAdapter extends RecyclerView.Adapter<MoviePosterViewHold
     @Override
     public void onBindViewHolder(MoviePosterViewHolder holder, int position) {
         MovieObject movieObject = movieObjectList.get(position);
-        //TODO (1) change hardcoded image
-        holder.moviePoster.setImageResource(R.mipmap.ic_launcher);
+        Picasso.with(context).load(BASE_URL_PICTURE + movieObject.getMoviePoster()).into(holder.poster);
     }
 
     @Override

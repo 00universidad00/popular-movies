@@ -7,4 +7,9 @@
     <string name="filter">Filter</string>
     <string name="filter_most_popular">Most Popular</string>
     <string name="filter_highest_rated">Highest Rated</string>
+
+    <!-- Notifications-->
+    <string name="toast_highest_rated">Highest Rated Movies</string>
+    <string name="toast_most_popular">Most popular Movies</string>
+
 </resources>

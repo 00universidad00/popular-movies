@@ -3,19 +3,39 @@ package com.alanturing.popularmovies.data.model;
 import android.widget.ImageView;
 
 public class MovieObject {
-    private String movieName;
-    private ImageView moviePoster;
+    private String id;
+    private String original_title;
+    private String poster_path;
+    private String overview;
+    private String vote_average;
+    private String release_date;
 
-    public MovieObject(String movieName /* TODO(2) Enable ImageView moviePoster*/) {
-        this.movieName = movieName;
-        //TODO(1) this.moviePoster = moviePoster;
+    //region Getters
+    public String getId() {
+        return id;
     }
 
-    public String getMovieName() {
-        return movieName;
+    public String getOriginalTitle() {
+        return original_title;
     }
 
-    public ImageView getMoviePoster() {
-        return moviePoster;
+    public String getMoviePoster() {
+        return poster_path;
     }
+
+    public String getOverview() {
+
+        return overview;
+    }
+
+    public String getVoteAverage() {
+
+        return vote_average;
+    }
+
+    public String getReleaseDate() {
+
+        return release_date;
+    }
+//endregion
 }
